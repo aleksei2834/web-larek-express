@@ -22,7 +22,7 @@ export const postProduct = (req: Request, res: Response, next: NextFunction) => 
   category: req.body.category,
   price: req.body.price,
 })
-  .then((product) => res.send(product))
+  .then((product) => res.status(201).send(product))
   .catch((error) => {
     if (error instanceof Error && error.message.includes('E11000')) {
       next(new ConflictError('Продукт с таким названием уже существует'));
